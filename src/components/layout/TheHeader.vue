@@ -15,13 +15,11 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-$c-Primary: #5b78d6;
-$c-Secondary: #5582ff;
-$c-background: #202020;
+@import '../../styles/main.scss';
 
 header {
   width: 100%;
-  background-color: $c-background;
+  background-color: $c-headerBg;
   display: flex;
   justify-content: center;
   align-items: center;

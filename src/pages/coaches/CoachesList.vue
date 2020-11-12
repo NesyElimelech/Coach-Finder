@@ -7,22 +7,41 @@
         <button>Refresh</button>
         <router-link to="/register">Register as Couch </router-link>
       </div>
-      <ul>
-        LIST OF COACHES
+      <ul v-if="hasCoaches">
+        <coach-item
+          v-for="coach in filteredCoaches"
+          :key="coach.id"
+          :id="coach.id"
+          :firstName="coach.firstName"
+          :lastName="coach.lastName"
+          :rate="coach.hourlyRate"
+          :areas="coach.areas"
+        ></coach-item>
       </ul>
+      <h3 v-else>No coaches found.</h3>
     </section>
   </div>
 </template>
 
 <script>
-export default {}
+import CoachItem from '../../components/coaches/CoachItem.vue'
+export default {
+  components: {
+    CoachItem
+  },
+  computed: {
+    filteredCoaches() {
+      return this.$store.getters['coaches/coaches']
+    },
+    hasCoaches() {
+      return this.$store.getters['coaches/hasCoaches']
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
-$c-Primary: #5b78d6;
-$c-Secondary: #5582ff;
-$c-background: #202020;
-
+@import '../../styles/main.scss';
 .container {
   width: 100%;
   height: 100vh;
@@ -37,22 +56,34 @@ $c-background: #202020;
     letter-spacing: 0.4rem;
     text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
   }
-  a {
-    text-decoration: none;
-    color: $c-Primary;
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid transparent;
-    font-size: 1.6rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-transform: uppercase;
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    a,
+    button {
+      text-decoration: none;
+      color: $c-Secondary;
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid transparent;
+      font-size: 1.6rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      outline: none;
 
-    &:active,
-    &:hover,
-    &.router-link-active {
-      border: 1px solid $c-Secondary;
+      &:active,
+      &:hover,
+      &.router-link-active {
+        border: 1px solid $c-Secondary;
+      }
     }
+  }
+  ul {
+    list-style: none;
+    font-size: 1.6rem;
+    padding: 1rem;
   }
 }
 </style>
