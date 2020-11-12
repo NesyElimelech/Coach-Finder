@@ -1,19 +1,27 @@
 <template>
-  <li>
+  <base-card>
     <h3>{{ fullName }}</h3>
     <h4>${{ rate }}/hour</h4>
     <div>
       <span v-for="area in areas" :key="area">{{ area }} &nbsp; </span>
     </div>
     <div class="actions">
-      <router-link :to="coachContactLink">Contact</router-link>
-      <router-link :to="coachDetailLink">View Details</router-link>
+      <base-button
+        ><router-link :to="coachContactLink">Contact</router-link></base-button
+      >
+      <base-button
+        ><router-link :to="coachDetailLink"
+          >View Details</router-link
+        ></base-button
+      >
     </div>
-  </li>
+  </base-card>
 </template>
 
 <script>
+import BaseButton from '../ui/BaseButton.vue'
 export default {
+  components: { BaseButton },
   props: ['id', 'firstName', 'lastName', 'rate', 'areas'],
   computed: {
     fullName() {
@@ -32,49 +40,24 @@ export default {
 <style lang="scss" scoped>
 @import '../../styles/main.scss';
 
-li {
-  margin: 1rem 0;
-  border: 1px solid #424242;
-  border-radius: 12px;
-  padding: 1rem;
+h3 {
+  font-size: 3rem;
+}
+h4 {
+  font-size: 2rem;
+}
 
-  h3 {
-    font-size: 1.8rem;
-  }
-  h4 {
-    font-size: 1.6rem;
-  }
+h3,
+h4 {
+  margin: 0.5rem 0;
+}
 
-  h3,
-  h4 {
-    margin: 0.5rem 0;
-  }
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
 
-  div {
-    margin: 0.5rem 0;
-  }
-
-  .actions {
-    display: flex;
-    justify-content: flex-end;
-    a {
-      margin-right: 0.5rem;
-      text-decoration: none;
-      cursor: pointer;
-      color: $c-mainBg;
-      background-color: $c-links;
-      padding: 0.5rem 1rem;
-      border: 1px solid $c-background;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      transition: background 0.4s ease;
-
-      &:hover,
-      &:active {
-        color: $c-links;
-        background-color: $c-mainBg;
-      }
-    }
-  }
+a {
+  font-size: 1.9rem;
 }
 </style>

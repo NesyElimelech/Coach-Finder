@@ -1,10 +1,24 @@
-$c-Primary: #5b78d6;
-$c-Secondary: #5582ff;
-$c-text: #181818;
-$c-links: #337aff;
+$c-Primary: #fda239;
+$c-Secondary: #148582;
+$c-text: #ebebeb;
+$c-links: #dadada;
 $c-headerBg: #202020;
-$c-mainBg: #f3f1f1;
-$c-background: #2c2c2c;
+$c-mainBg: linear-gradient(
+  to left top,
+  #0d3d79,
+  #0d3b73,
+  #0e3a6d,
+  #103868,
+  #113662,
+  #103764,
+  #0f3767,
+  #0e3869,
+  #0b3c75,
+  #0a3f81,
+  #0e428c,
+  #154598
+);
+$c-background: #04233f;
 
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;900&display=swap');
 * {
@@ -22,15 +36,16 @@ html {
 body {
   min-height: 100vh;
   width: 100%;
-  background-color: $c-mainBg;
+  background-image: $c-mainBg;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: $c-text;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 900;
+a {
+  text-decoration: none;
+
+  &:visited {
+    color: inherit;
+  }
 }

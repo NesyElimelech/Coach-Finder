@@ -28,19 +28,20 @@ header {
 
   a {
     text-decoration: none;
-    color: $c-Primary;
+    color: $c-text;
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    border: 1px solid transparent;
+    border-bottom: 3px solid transparent;
     font-size: 4rem;
     font-weight: 600;
     cursor: pointer;
     text-transform: uppercase;
+    transition: all 0.2s ease;
 
     &:active,
     &:hover,
     &.router-link-active {
-      border: 1px solid $c-Secondary;
+      border-bottom: 3px solid $c-Secondary;
     }
   }
   nav {
