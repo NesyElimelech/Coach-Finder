@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Contact a coach</h1>
+    <img src="../../assets/img/Contact.svg" alt="Man Stands" class="img" />
   </div>
 </template>
 

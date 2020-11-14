@@ -1,14 +1,15 @@
 <template>
+  <img src="../../assets/img/Coaches_List.svg" alt="Man Stands" class="img" />
   <h1>Coaches List</h1>
-  <section>FILTER</section>
+  <section>
+    <coach-filter @change-filter="setFilters"></coach-filter>
+  </section>
   <section>
     <div class="controls">
-      <base-button> <a>Refresh</a> </base-button>
-      <base-button
-        ><router-link to="/register"
-          >Register as Couch
-        </router-link></base-button
-      >
+      <base-button mode="outline"> Refresh </base-button>
+      <base-button to="/register" link>
+        Register as Couch
+      </base-button>
     </div>
     <ul v-if="hasCoaches">
       <coach-item
@@ -28,17 +29,46 @@
 
 <script>
 import CoachItem from '../../components/coaches/CoachItem.vue'
+import CoachFilter from '../../components/coaches/CoachFilter.vue'
 
 export default {
+  data() {
+    return {
+      activeFilters: {
+        frontend: true,
+        backend: true,
+        career: true
+      }
+    }
+  },
   components: {
-    CoachItem
+    CoachItem,
+    CoachFilter
   },
   computed: {
     filteredCoaches() {
-      return this.$store.getters['coaches/coaches']
+      const coaches = this.$store.getters['coaches/coaches']
+
+      return coaches.filter(coach => {
+        if (this.activeFilters.frontend && coach.areas.includes('frontend')) {
+          return true
+        }
+        if (this.activeFilters.backend && coach.areas.includes('backend')) {
+          return true
+        }
+        if (this.activeFilters.career && coach.areas.includes('career')) {
+          return true
+        }
+        return false
+      })
     },
     hasCoaches() {
       return this.$store.getters['coaches/hasCoaches']
+    }
+  },
+  methods: {
+    setFilters(updateFilters) {
+      this.activeFilters = updateFilters
     }
   }
 }

@@ -3,17 +3,15 @@
     <h3>{{ fullName }}</h3>
     <h4>${{ rate }}/hour</h4>
     <div>
-      <span v-for="area in areas" :key="area">{{ area }} &nbsp; </span>
+      <base-badge v-for="area in areas" :key="area" :mode="area">{{
+        area
+      }}</base-badge>
     </div>
     <div class="actions">
-      <base-button
-        ><router-link :to="coachContactLink">Contact</router-link></base-button
+      <base-button link mode="outline" :to="coachContactLink"
+        >Contact</base-button
       >
-      <base-button
-        ><router-link :to="coachDetailLink"
-          >View Details</router-link
-        ></base-button
-      >
+      <base-button link :to="coachDetailLink">View Details</base-button>
     </div>
   </base-card>
 </template>
@@ -57,7 +55,7 @@ h4 {
   justify-content: flex-end;
 }
 
-a {
-  font-size: 1.9rem;
-}
+// a {
+//   font-size: 1.9rem;
+// }
 </style>

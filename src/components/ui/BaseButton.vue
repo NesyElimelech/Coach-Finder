@@ -1,35 +1,62 @@
 <template>
-  <div class="btn">
+  <button v-if="!link" :class="mode">
     <slot></slot>
-  </div>
+  </button>
+  <router-link v-else :to="to" :class="mode">
+    <slot></slot>
+  </router-link>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    mode: { type: String, required: false, default: 'flat' },
+    link: { type: Boolean, required: false, default: false },
+    to: { type: String, required: false, default: '/' }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 @import '../../styles/main.scss';
 
-.btn {
-  width: auto;
-  margin: 0 1rem;
-  padding: 1rem 2rem;
+a,
+button {
+  margin: 1rem;
+  padding: 0.75rem 1.5rem;
+  color: $c-text;
   font-size: 1.8rem;
   font-weight: 900;
+  font-weight: 900;
+  font-size: 1.8rem;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+}
+
+.outline {
+  background-color: transparent;
   border: 2px solid $c-Secondary;
   border-radius: 0.85rem;
-  font-weight: 900;
-  font-size: 1.8rem;
-  background: transparent;
   transition: background 0.3s ease;
-  text-align: center;
-  display: block;
-  cursor: pointer;
 
   &:hover,
-  &:active &:visited {
+  &:active,
+  &:visited {
     background: $c-Secondary;
+  }
+}
+.flat {
+  background-color: $c-Secondary;
+  color: $c-text;
+  border-radius: 0.85rem;
+
+  &:hover,
+  &:active,
+  &:visited {
+    background-color: $c-Secondary;
+    filter: brightness(115%);
   }
 }
 </style>

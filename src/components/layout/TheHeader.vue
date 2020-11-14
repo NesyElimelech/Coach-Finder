@@ -32,7 +32,7 @@ header {
     display: inline-block;
     padding: 0.75rem 1.5rem;
     border-bottom: 3px solid transparent;
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: 600;
     cursor: pointer;
     text-transform: uppercase;
