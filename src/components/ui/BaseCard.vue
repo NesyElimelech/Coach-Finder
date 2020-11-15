@@ -1,4 +1,5 @@
 <template>
+  <!-- a card component -->
   <div class="card">
     <slot></slot>
   </div>

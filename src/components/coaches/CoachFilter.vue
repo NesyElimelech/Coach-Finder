@@ -1,8 +1,9 @@
 <template>
+  <!-- shows 3 checkboxs to choose witch coaches to show in the filtered coaches list according the user's picks-->
   <base-card>
     <div class="inputCard">
       <header>
-        <h2>Fine Your Coach</h2>
+        <h2>Find Your Coach</h2>
       </header>
       <div>
         <span class="filter-option">
@@ -56,6 +57,8 @@ export default {
   },
   methods: {
     setFilter(event) {
+      // * check if the user change the checked status and if so it's update the filters accordingly
+      // * so the coaches list view will update too
       const inputId = event.target.id
       const isActive = event.target.checked
       const updateFilters = {

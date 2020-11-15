@@ -1,4 +1,5 @@
 <template>
+  <!-- display the coach's main details as a card component for each coach -->
   <base-card>
     <h3>{{ fullName }}</h3>
     <h4>${{ rate }}/hour</h4>
@@ -54,8 +55,4 @@ h4 {
   display: flex;
   justify-content: flex-end;
 }
-
-// a {
-//   font-size: 1.9rem;
-// }
 </style>

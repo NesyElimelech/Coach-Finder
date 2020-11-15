@@ -1,4 +1,5 @@
 <template>
+  <!-- displays a specific coach full details and an option to contact him -->
   <img src="../../assets/img/Coach_Details.svg" alt="Man Stands" class="img" />
   <section>
     <base-card>
@@ -10,9 +11,7 @@
     <base-card>
       <header>
         <h2>Interested? Reach us now!</h2>
-        <base-button link :to="contactLink" @click="disableButton" disabled
-          >Contact</base-button
-        >
+        <base-button link :to="contactLink">Contact</base-button>
       </header>
       <router-view></router-view>
     </base-card>
@@ -35,11 +34,6 @@ export default {
       selectedCoach: null
     }
   },
-  methods: {
-    disableButton() {
-      return true
-    }
-  },
   computed: {
     fullName() {
       return this.selectedCoach.firstName + ' ' + this.selectedCoach.lastName
@@ -58,6 +52,7 @@ export default {
     }
   },
   created() {
+    // * loop through all the coaches and find the right one to show with the coach's id
     this.selectedCoach = this.$store.getters['coaches/coaches'].find(
       coach => coach.id == this.id
     )

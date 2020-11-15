@@ -1,4 +1,5 @@
 <template>
+  <!-- check if if the base button is a link or a button component and add some style to it -->
   <button v-if="!link" :class="mode">
     <slot></slot>
   </button>

@@ -1,4 +1,5 @@
 <template>
+  <!-- display a "badge" component with a dynamic styles depends on the coach areas of expertise -->
   <span class="badge" :class="mode"><slot></slot></span>
 </template>
 
