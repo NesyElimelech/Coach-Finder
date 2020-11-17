@@ -10,7 +10,9 @@
   </section>
   <section>
     <div class="controls">
-      <base-button mode="outline" @click="loadCoaches"> Refresh </base-button>
+      <base-button mode="outline" @click="loadCoaches(true)">
+        Refresh
+      </base-button>
       <base-button to="/register" link v-if="!isCoach && !isLoading">
         Register as Couch
       </base-button>
@@ -31,7 +33,9 @@
       >
       </coach-item>
     </ul>
-    <h3 v-else>No coaches found.</h3>
+    <base-card v-else>
+      <h3>No coaches found.</h3>
+    </base-card>
   </section>
 </template>
 
@@ -92,10 +96,12 @@ export default {
     setFilters(updateFilters) {
       this.activeFilters = updateFilters
     },
-    async loadCoaches() {
+    async loadCoaches(refresh = false) {
       this.isLoading = true
       try {
-        await this.$store.dispatch('coaches/loadCoaches')
+        await this.$store.dispatch('coaches/loadCoaches', {
+          forceRefresh: refresh
+        })
       } catch (error) {
         this.error = error.message || 'Something went wrong!'
       }
