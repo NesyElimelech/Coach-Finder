@@ -1,18 +1,24 @@
 <template>
   <!-- shows a list of filtered coaches in a custom component with 3 options to filter * -->
   <img src="../../assets/img/Coaches_List.svg" alt="Man Stands" class="img" />
+  <base-dialog :show="!!error" title="An Error Occurred!" @close="handleError">
+    <p>{{ error }}</p>
+  </base-dialog>
   <h1>Coaches List</h1>
   <section>
     <coach-filter @change-filter="setFilters"></coach-filter>
   </section>
   <section>
     <div class="controls">
-      <base-button mode="outline"> Refresh </base-button>
-      <base-button to="/register" link v-if="!isCoach">
+      <base-button mode="outline" @click="loadCoaches"> Refresh </base-button>
+      <base-button to="/register" link v-if="!isCoach && !isLoading">
         Register as Couch
       </base-button>
     </div>
-    <ul v-if="hasCoaches">
+    <div v-if="isLoading">
+      <base-spinner></base-spinner>
+    </div>
+    <ul v-else-if="hasCoaches">
       <!-- looping through all the coaches, passing props to each coach component  -->
       <coach-item
         v-for="coach in filteredCoaches"
@@ -36,6 +42,8 @@ import CoachFilter from '../../components/coaches/CoachFilter.vue'
 export default {
   data() {
     return {
+      isLoading: false,
+      error: null,
       activeFilters: {
         frontend: true,
         backend: true,
@@ -69,17 +77,32 @@ export default {
     },
     hasCoaches() {
       //* checks if there is any coaches in the db
-      return this.$store.getters['coaches/hasCoaches']
+      return !this.isLoading && this.$store.getters['coaches/hasCoaches']
     },
     isCoach() {
       //* checks if the user is registered as coach
       return this.$store.getters['coaches/isCoach']
     }
   },
+  created() {
+    this.loadCoaches()
+  },
   methods: {
     //* update the showed list of coaches by the user's picked filter ('frontend', 'backend', 'career')
     setFilters(updateFilters) {
       this.activeFilters = updateFilters
+    },
+    async loadCoaches() {
+      this.isLoading = true
+      try {
+        await this.$store.dispatch('coaches/loadCoaches')
+      } catch (error) {
+        this.error = error.message || 'Something went wrong!'
+      }
+      this.isLoading = false
+    },
+    handleError() {
+      this.error = null
     }
   }
 }
@@ -97,5 +120,9 @@ h1 {
 .controls {
   display: flex;
   justify-content: space-around;
+}
+
+p {
+  margin-top: 1.8rem;
 }
 </style>

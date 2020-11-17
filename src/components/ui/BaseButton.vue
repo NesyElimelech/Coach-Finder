@@ -34,12 +34,12 @@ button {
   cursor: pointer;
   display: inline-block;
   outline: none;
+  border-radius: 1rem;
 }
 
 .outline {
   background-color: transparent;
   border: 2px solid $c-Secondary;
-  border-radius: 0.85rem;
   transition: background 0.3s ease;
 
   &:hover,
@@ -51,7 +51,8 @@ button {
 .flat {
   background-color: $c-Secondary;
   color: $c-text;
-  border-radius: 0.85rem;
+
+  border: 1px solid $c-Secondary;
 
   &:hover,
   &:active,

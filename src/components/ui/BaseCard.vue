@@ -14,7 +14,7 @@ export default {}
 .card {
   width: 60rem;
   margin: 2rem;
-  background-color: rgba($c-background, 0.2);
+  background-color: rgba($c-background, 0.4);
   color: $c-text;
   padding: 4rem;
   border-radius: 1rem;
