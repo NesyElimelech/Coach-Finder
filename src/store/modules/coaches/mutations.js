@@ -8,6 +8,7 @@ export default {
     state.coaches = payload
   },
   setFetchTimestamp(state) {
+    // * making timestamp for the latest fetched data from the db
     state.lastFetched = new Date().getTime()
   }
 }

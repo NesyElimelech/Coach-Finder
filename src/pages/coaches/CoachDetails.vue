@@ -1,29 +1,33 @@
 <template>
-  <!-- displays a specific coach full details and an option to contact him -->
-  <img src="../../assets/img/Coach_Details.svg" alt="Man Stands" class="img" />
-  <section>
-    <base-card>
-      <h2>{{ fullName }}</h2>
-      <h3>${{ rate }}/hour</h3>
-    </base-card>
-  </section>
-  <section>
-    <base-card>
-      <header>
-        <h2>Interested? Reach us now!</h2>
-        <base-button link :to="contactLink">Contact</base-button>
-      </header>
-      <router-view></router-view>
-    </base-card>
-  </section>
-  <section>
-    <base-card>
-      <base-badge v-for="area in areas" :key="area" :mode="area">
-        {{ area }}
-      </base-badge>
-      <p>{{ description }}</p>
-    </base-card>
-  </section>
+  <div>
+    <!-- displays a specific coach full details and an option to contact him -->
+    <teleport to="body">
+      <img src="../../assets/img/Coach_Details.svg" class="img" />
+    </teleport>
+    <section>
+      <base-card>
+        <h2>{{ fullName }}</h2>
+        <h3>${{ rate }}/hour</h3>
+      </base-card>
+    </section>
+    <section>
+      <base-card>
+        <header>
+          <h2>Interested? Reach us now!</h2>
+          <base-button link :to="contactLink">Contact</base-button>
+        </header>
+        <router-view></router-view>
+      </base-card>
+    </section>
+    <section>
+      <base-card>
+        <base-badge v-for="area in areas" :key="area" :mode="area">
+          {{ area }}
+        </base-badge>
+        <p>{{ description }}</p>
+      </base-card>
+    </section>
+  </div>
 </template>
 
 <script>

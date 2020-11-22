@@ -1,7 +1,7 @@
 export default {
   async registerCoach(context, data) {
     //* received data from the registration form and assign it to a new coach object
-    // * add the new coach data to the db
+    // * add the new coach data to the firebase database.
     const userId = context.rootGetters.userId
     const coachData = {
       firstName: data.first,
@@ -10,9 +10,11 @@ export default {
       description: data.desc,
       hourlyRate: data.rate
     }
+    const token = context.rootGetters.token
 
     const response = await fetch(
-      `https://find-a-coach---vue3.firebaseio.com/coaches/${userId}.json`,
+      `https://find-a-coach---vue3.firebaseio.com/coaches/${userId}.json?auth=` +
+        token,
       {
         method: 'PUT',
         body: JSON.stringify(coachData)
@@ -28,7 +30,11 @@ export default {
       id: userId
     })
   },
+
   async loadCoaches(context, payload) {
+    //* fetch the data from firebase database and store it in the vuex store
+    //* preventing from the page to refetch data every time, it sets a timestamp to make sure that we fetch only after 5 min.
+
     if (!payload.forceRefresh && !context.getters.shouldUpdate) {
       return
     }

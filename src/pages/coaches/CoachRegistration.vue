@@ -1,15 +1,23 @@
 <template>
-  <!-- Shows the registration form and pass the data from it to the db -->
-  <img src="../../assets/img/Register.svg" alt="Man Stands" class="img" />
-  <base-dialog :show="!!error" title="An Error Occurred!" @close="handleError">
-    <p>{{ error }}</p>
-  </base-dialog>
-  <section>
-    <h1>Register as a coach now!</h1>
-    <base-card>
-      <coach-form @save-data="saveData" :isLoading="isLoading"></coach-form>
-    </base-card>
-  </section>
+  <div>
+    <!-- Shows the registration form for a user to become a coach. -->
+    <teleport to="body">
+      <img src="../../assets/img/Register.svg" class="img" />
+    </teleport>
+    <base-dialog
+      :show="!!error"
+      title="An Error Occurred!"
+      @close="handleError"
+    >
+      <p>{{ error }}</p>
+    </base-dialog>
+    <section>
+      <h1>Register as a coach now!</h1>
+      <base-card>
+        <coach-form @save-data="saveData" :isLoading="isLoading"></coach-form>
+      </base-card>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -24,7 +32,7 @@ export default {
   components: { CoachForm },
   methods: {
     async saveData(data) {
-      //* add the new coach object to the coaches array , redirect to '/coaches' page
+      //* add the new coach object to the coaches array , redirect to '/coaches' page.
       this.isLoading = true
       try {
         await this.$store.dispatch('coaches/registerCoach', data)

@@ -1,4 +1,5 @@
 <template>
+  <!-- shows a card of a request from a coach with an email and a message, in a card component -->
   <li>
     <div>
       <a :href="emailLink" target="_blank">{{ email }}</a>

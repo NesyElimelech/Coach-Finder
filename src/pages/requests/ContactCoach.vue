@@ -1,4 +1,5 @@
 <template>
+  <!-- shows a contact coach form where you put your email and your message to a specific coach. -->
   <form @submit.prevent="submitForm">
     <div class="form-control">
       <label for="email">Your E-Mail</label>

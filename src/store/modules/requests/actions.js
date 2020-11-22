@@ -1,5 +1,5 @@
 export default {
-  // * send the coaches requests info to the db
+  // * send the coaches requests info to the firebase database.
   async contactCoach(context, payload) {
     const newRequest = {
       userEmail: payload.email,
@@ -23,12 +23,14 @@ export default {
     context.commit('addRequest', newRequest)
   },
 
-  //* getting a specific coach requests from the db
+  //* getting a specific coach requests from the firebase database.
   async fetchRequests(context) {
     const coachId = context.rootGetters.userId
+    const token = context.rootGetters.token
 
     const response = await fetch(
-      `https://find-a-coach---vue3.firebaseio.com/requests/${coachId}.json`
+      `https://find-a-coach---vue3.firebaseio.com/requests/${coachId}.json?auth=` +
+        token
     )
 
     const responseData = await response.json()

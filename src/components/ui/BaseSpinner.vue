@@ -1,4 +1,5 @@
 <template>
+  <!-- A basic spinner to indicate the user something is working and yet to be completed -->
   <div class="loading-spinner-disk">
     <div class="spinning-disk">
       <div>
