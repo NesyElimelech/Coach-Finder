@@ -1,5 +1,4 @@
 let timer //? global variable, storing the setTimeout so we have only 1 timer.
-
 export default {
   async login(context, payload) {
     return context.dispatch('auth', {

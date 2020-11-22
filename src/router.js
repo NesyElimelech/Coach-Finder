@@ -18,7 +18,7 @@ const CoachDetails = defineAsyncComponent(() =>
 const CoachRegistration = defineAsyncComponent(() =>
   import('./pages/coaches/CoachRegistration.vue')
 )
-const ContactCoach = defineAsyncComponent(
+const ContactCoach = defineAsyncComponent(() =>
   import('./pages/requests/ContactCoach.vue')
 )
 const RequestsReceived = defineAsyncComponent(() =>
