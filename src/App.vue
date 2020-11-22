@@ -1,5 +1,6 @@
 <template>
   <the-header></the-header>
+  <!-- shows a moving background cubes  -->
   <div class="container">
     <div class="cube"></div>
     <div class="cube"></div>
