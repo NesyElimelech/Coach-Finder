@@ -19,10 +19,10 @@ npm run build
 ```
 npm run lint
 ```
-### Deployment to Vercel:
-```
+# Deployment to Vercel:
+
 https://coach-finder.vercel.app/
-```
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
