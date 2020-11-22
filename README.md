@@ -1,4 +1,4 @@
-# final-project-vue3
+# final-project-vue3 Course
 
 ## Project setup
 ```
@@ -18,6 +18,10 @@ npm run build
 ### Lints and fixes files
 ```
 npm run lint
+```
+### Deployment to Vercel:
+```
+https://coach-finder.vercel.app/
 ```
 
 ### Customize configuration
